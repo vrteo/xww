@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import {useEffect, useState} from "react";
-import hotLogo from './img/hot_wo_logo.png';
+// import hotLogo from './img/hot_wo_logo.png';
 import pfp from './img/PFP.png';
 
 export default function Home() {

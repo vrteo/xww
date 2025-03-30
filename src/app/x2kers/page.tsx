@@ -23,7 +23,19 @@ export default function Page() {
     ];
 
     const [images, setImages] = useState<{ src: string; width: number; height: number }[]>([]);
-    const [rectangles, setRectangles] = useState<any[]>([]);
+    const [rectangles, setRectangles] = useState<Array<{
+        backgroundImage: string;
+        backgroundSize: string;
+        backgroundPosition: string;
+        width: number;
+        height: number;
+        top: number;
+        left: number;
+        zIndex: number;
+        border: string;
+        transform: string;
+        boxShadow: string;
+    }>>([]);
     const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
     const [dragStart, setDragStart] = useState<{ x: number; y: number; rectX: number; rectY: number }>({
         x: 0,
