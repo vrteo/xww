@@ -46,6 +46,7 @@ export default function Page() {
         rectY: 0,
     });
     const [isDragging, setIsDragging] = useState(false);
+    const [showModal, setShowModal] = useState(true); // Modal visible initially
 
     useEffect(() => {
         const fetchImageSizes = async () => {
@@ -168,108 +169,143 @@ export default function Page() {
     const closePopup = () => setSelectedImage(null);
 
     return (
-        <div
-            className="w-screen h-screen bg-cover bg-[url(img/x2kers_bg.jpg)] relative overflow-hidden"
-            onMouseMove={handleMove}
-            onMouseUp={handleEnd}
-            onTouchMove={handleMove}
-            onTouchEnd={handleEnd}
-        >
-            {/* Add the static background text here */}
-            <div style={{
-                position: "absolute",
-                zIndex: 0, // Ensures it stays behind the images
-                top: "50%", // Center vertically
-                left: "50%", // Center horizontally
-                transform: "translate(-50%, -50%)", // Correct centering>
-            }}>
-                <div
-                    style={{
-                        fontSize: "1.5rem", // Adjust as needed
-                        color: "white", // Semi-transparent white text
-                        pointerEvents: "none" // Prevents interaction
-                    }}
-                >
-                    Thank you for the happiest memories we have made together.
-                    <br/> Let&#39;s walk together for many more years ❤️
-                </div>
-
-                {/*<button*/}
-                {/*    onClick={() => alert('Button clicked!')}*/}
-                {/*    className="px-4 py-2 text-white font-semibold rounded shadow-md outline-1 hover:outline-2"*/}
-                {/*>*/}
-                {/*    Click Me*/}
-                {/*</button>*/}
-            </div>
-
-            <div style={{zIndex: 0}}>
-
-            </div>
-
-
-            {/* Render draggable images */}
-            {rectangles.map((style, index) => (
-                <div
-                    key={index}
-                    style={{
-                        ...style,
-                        position: "absolute",
-                        top: style.top,
-                        left: style.left,
-                        width: `${style.width}px`,
-                        height: `${style.height}px`,
-                    }}
-                    onMouseDown={(event) => handleStart(index, event)}
-                    onTouchStart={(event) => handleStart(index, event)}
-                    onClick={(event) => handleImageClick(index, event)}
-                />
-            ))}
-
-            {/* Image Pop-up */}
-            {selectedImage && (
+        <div>
+            {/* Modal that appears when the page is first opened */}
+            {showModal && (
                 <div
                     className="fixed inset-0 flex items-center justify-center z-50"
                     style={{
-                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        backgroundColor: "rgba(0, 0, 0, 0.8)", // Semi-transparent background
+                        backdropFilter: "blur(8px)", // Blur effect for the background
+                        WebkitBackdropFilter: "blur(8px)", // Safari fallback
+
                     }}
-                    onClick={closePopup}
                 >
-                    <img
-                        src={selectedImage.src}
-                        alt="Enlarged Preview"
+                    <div
+                        className="p-6"
                         style={{
-                            maxWidth: "90%",
-                            maxHeight: "90%",
-                            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
+                            maxWidth: "400px",
+                            textAlign: "center",
                             borderRadius: "8px",
                         }}
-                        onClick={(e) => e.stopPropagation()} // Prevent closing pop-up when clicking the image
-                    />
-                    <div
-                        className="absolute bottom-0 left-0 right-0 p-2"
-                        style={{
-                            background: "linear-gradient(transparent, rgba(0, 0, 0, 0.7))",
-                            color: "white",
-                            textAlign: "center",
-                            position: "absolute",
-                            width: "100%",
-                        }}
                     >
-                        <a
-                            href={selectedImage.link}
-                            target="_blank"
-                            rel="noreferrer"
-                            style={{
-                                color: "#ffffff",
-                                textDecoration: "none",
-                                fontWeight: "bold",
-                            }}
+                        {/* Modal Content */}
+                        <h2 className="text-xl font-bold mb-4 text-white">Happy 2nd anniversary, Xikers!</h2>
+                        <p className="mb-4 text-white">
+                            Explore some of roady&apos;s memories and messages. Move the images around to discover more!
+                        </p>
+                        <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+                            onClick={() => setShowModal(false)} // Close the modal when clicked
                         >
-                            {selectedImage.credit}
-                        </a>
+                            Enter
+                        </button>
                     </div>
                 </div>
             )}
+            <div
+                className="w-screen h-screen bg-cover bg-[url(img/x2kers_bg.jpg)] relative overflow-hidden"
+                onMouseMove={handleMove}
+                onMouseUp={handleEnd}
+                onTouchMove={handleMove}
+                onTouchEnd={handleEnd}
+            >
+                {/* Add the static background text here */}
+                <div style={{
+                    position: "absolute",
+                    zIndex: 0, // Ensures it stays behind the images
+                    top: "50%", // Center vertically
+                    left: "50%", // Center horizontally
+                    transform: "translate(-50%, -50%)", // Correct centering>
+                }}>
+                    <div
+                        style={{
+                            fontSize: "1.5rem", // Adjust as needed
+                            color: "white", // Semi-transparent white text
+                            pointerEvents: "none" // Prevents interaction
+                        }}
+                    >
+                        Thank you for the happiest memories we have made together.
+                        <br/> Let&#39;s walk together for many more years ❤️
+                    </div>
+
+                    {/*<button*/}
+                    {/*    onClick={() => alert('Button clicked!')}*/}
+                    {/*    className="px-4 py-2 text-white font-semibold rounded shadow-md outline-1 hover:outline-2"*/}
+                    {/*>*/}
+                    {/*    Click Me*/}
+                    {/*</button>*/}
+                </div>
+
+                <div style={{zIndex: 0}}>
+
+                </div>
+
+
+                {/* Render draggable images */}
+                {rectangles.map((style, index) => (
+                    <div
+                        key={index}
+                        style={{
+                            ...style,
+                            position: "absolute",
+                            top: style.top,
+                            left: style.left,
+                            width: `${style.width}px`,
+                            height: `${style.height}px`,
+                        }}
+                        onMouseDown={(event) => handleStart(index, event)}
+                        onTouchStart={(event) => handleStart(index, event)}
+                        onClick={(event) => handleImageClick(index, event)}
+                    />
+                ))}
+
+                {/* Image Pop-up */}
+                {selectedImage && (
+                    <div
+                        className="fixed inset-0 flex items-center justify-center z-50"
+                        style={{
+                            backgroundColor: "rgba(0, 0, 0, 0.5)",
+                        }}
+                        onClick={closePopup}
+                    >
+                        <img
+                            src={selectedImage.src}
+                            alt="Enlarged Preview"
+                            style={{
+                                maxWidth: "90%",
+                                maxHeight: "90%",
+                                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
+                                borderRadius: "8px",
+                            }}
+                            onClick={(e) => e.stopPropagation()} // Prevent closing pop-up when clicking the image
+                        />
+                        <div
+                            className="absolute bottom-0 left-0 right-0 p-2"
+                            style={{
+                                background: "linear-gradient(transparent, rgba(0, 0, 0, 0.7))",
+                                color: "white",
+                                textAlign: "center",
+                                position: "absolute",
+                                width: "100%",
+                            }}
+                        >
+                            <a
+                                href={selectedImage.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{
+                                    color: "#ffffff",
+                                    textDecoration: "none",
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                {selectedImage.credit}
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
