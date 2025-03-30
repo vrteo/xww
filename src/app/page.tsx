@@ -20,7 +20,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-950">
+        <div className="flex flex-col min-h-screen">
             {/* Header Section */}
             <header className={`fixed w-full py-4 z-10 transition-colors ${isScrolled ? 'bg-gray-950 text-white' : 'bg-transparent text-white'}`}>
                 <div className="container mx-auto flex justify-between items-center px-4">
@@ -77,6 +77,9 @@ export default function Home() {
 
             {/*/!* Background with action buttons *!/*/}
             {/*<div className="relative h-screen bg-cover bg-bottom lg:bg-bottom bg-[url(img/xikers_4_album_frontpage.png)]">*/}
+            <div className="flex items-center justify-center h-screen bg-gray-200">
+                <h1 className="text-4xl font-bold text-gray-700">Page under construction</h1>
+            </div>
             {/*    <div className="absolute inset-0  flex flex-col justify-center lg:justify-end items-center space-y-4 mb-16">*/}
             {/*        <Image src={hotLogo} alt="Hot Logo" width={350} height={128}/>*/}
             {/*        <div className="flex space-x-4">*/}
@@ -89,11 +92,8 @@ export default function Home() {
             {/*        </div>*/}
             {/*    </div>*/}
             {/*</div>*/}
-
-
-            <div className="flex items-center justify-center flex-grow">
-                <h1 className="text-3xl font-bold text-gray-700">Page under construction</h1>
-            </div>
+            
+            
 
             {/* Footer Section */}
             <footer className="bg-gray-950 text-white py-4">
