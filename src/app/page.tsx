@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import {useEffect, useState} from "react";
-// import hotLogo from './img/hot_wo_logo.png';
+//import hotLogo from './img/hot_wo_logo.png';
 import pfp from './img/PFP.png';
+// Centered placeholder text
 
 export default function Home() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -77,9 +78,6 @@ export default function Home() {
 
             {/*/!* Background with action buttons *!/*/}
             {/*<div className="relative h-screen bg-cover bg-bottom lg:bg-bottom bg-[url(img/xikers_4_album_frontpage.png)]">*/}
-            <div className="flex items-center justify-center h-screen bg-gray-200">
-                <h1 className="text-4xl font-bold text-gray-700">Page under construction</h1>
-            </div>
             {/*    <div className="absolute inset-0  flex flex-col justify-center lg:justify-end items-center space-y-4 mb-16">*/}
             {/*        <Image src={hotLogo} alt="Hot Logo" width={350} height={128}/>*/}
             {/*        <div className="flex space-x-4">*/}
