@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 
+
 export default function Page() {
     const imageData = [
         {src: '/img/A.jpeg', credit: 'from @yujunsmile', link: 'https://x.com/yujunsmile '},
@@ -21,6 +22,14 @@ export default function Page() {
         {src: '/img/O.png', credit: 'from Zenthi1', link: 'https://x.com/Zenthi'},
         {src: '/img/P.jpg', credit: 'from Siana', link: 'https://x.com/_sixnx_'},
         {src: '/img/Z.jpg', credit: 'from teo', link: 'https://x.com/fixontricky'},
+        {src: '/img/1.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/2.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/3.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/4.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/5.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/6.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/7.png', credit: 'from 2024 wishing well', link: ''},
+        {src: '/img/8.png', credit: 'from 2024 wishing well', link: ''},
     ];
 
     const [images, setImages] = useState<{ src: string; width: number; height: number }[]>([]);
@@ -194,6 +203,10 @@ export default function Page() {
                         <p className="mb-4 text-white">
                             Explore some of roady&apos;s memories and messages. Move the images around to discover more!
                         </p>
+                        <p className="mb-4 text-white">
+                            Made with ❤️ by <a href="https://x.com/xikersworldwide">XikersWorldwide</a> team
+                        </p>
+
                         <button
                             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
                             onClick={() => setShowModal(false)} // Close the modal when clicked
@@ -229,12 +242,12 @@ export default function Page() {
                         <br/> Let&#39;s walk together for many more years ❤️
                     </div>
 
-                    {/*<button*/}
-                    {/*    onClick={() => alert('Button clicked!')}*/}
-                    {/*    className="px-4 py-2 text-white font-semibold rounded shadow-md outline-1 hover:outline-2"*/}
-                    {/*>*/}
-                    {/*    Click Me*/}
-                    {/*</button>*/}
+                    <button
+                        onClick={() => window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSe0TF1myx-wcoYjbjY3UmhncJGJ1toFcpk2Yld-6CpjUKOTYw/viewform?usp=sharing'}
+                        className="px-4 py-2 text-white font-semibold rounded shadow-md outline-1 hover:outline-2"
+                    >
+                        Add your wishes to the 2025 Wishing Well
+                    </button>
                 </div>
 
                 <div style={{zIndex: 0}}>
