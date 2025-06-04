@@ -6,16 +6,16 @@ import { votingApps } from '@/data/votingApps';
 
 export default function VotingPage() {
 
-    const events = [
-        {
-            id: '1',
-            title: 'Team Meeting',
-            startDate: new Date(2025, 5, 4),
-            endDate: new Date(2025, 5, 6),
-            color: 'blue'
-        },
-        // ... more events
-    ];
+    // const events = [
+    //     {
+    //         id: '1',
+    //         title: 'Team Meeting',
+    //         startDate: new Date(2025, 5, 4),
+    //         endDate: new Date(2025, 5, 6),
+    //         color: 'blue'
+    //     },
+    //     // ... more events
+    // ];
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-800 text-white">
