@@ -1,6 +1,5 @@
 'use client';
 
-import Calendar from '@/components/Calendar';
 import Navbar from '@/components/Navbar';
 import VotingCarousel from '@/components/VotingCarousel';
 import { votingApps } from '@/data/votingApps';
