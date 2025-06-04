@@ -27,7 +27,7 @@ export default function VotingCarousel({ apps }: VotingCarouselProps) {
                         className="flex transition-transform duration-500 ease-in-out h-full"
                         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                     >
-                        {apps.map((app, index) => (
+                        {apps.map((app) => (
                             <div 
                                 key={app.id}
                                 className="flex-shrink-0 w-full h-full flex items-center justify-center p-8"
