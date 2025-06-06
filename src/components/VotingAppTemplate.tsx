@@ -1,9 +1,8 @@
 'use client';
 
-import { VotingApp, VotingAppTemplateProps} from '@/types/voting';
+import { VotingAppTemplateProps} from '@/types/voting';
 import Image from 'next/image';
 import TwoWeekCalendar from './TwoWeekCalendar';
-import { CalendarEvent } from '@/types/CalendarEvent';
 import EventCountdown from './EventCountdown';
 import ExpandableTutorial from './ExpandableTutorial';
 
