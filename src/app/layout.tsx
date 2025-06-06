@@ -27,12 +27,12 @@ export default function RootLayout({
       <head></head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <footer className="bg-gray-950 text-white py-4">
+          <div className="container mx-auto text-center">
+            <p className="text-sm">&copy; {new Date().getFullYear()} Xikers Worldwide. All rights reserved.</p>
+          </div>
+        </footer>
       </body>
-      <footer className="bg-gray-950 text-white py-4">
-                <div className="container mx-auto text-center">
-                    <p className="text-sm">&copy; {new Date().getFullYear()} Xikers Worldwide. All rights reserved.</p>
-                </div>
-            </footer>
     </html>
   );
 }

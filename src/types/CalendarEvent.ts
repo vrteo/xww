@@ -1,7 +1,7 @@
+export type EventType = 'tracking' | 'prevote' | 'live';
+
 export interface CalendarEvent {
-    id: string;
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    color?: string;
+    type: EventType;
+    startDay: number; // 0-6 (Monday-Sunday)
+    endDay: number; // 0-6 (Monday-Sunday)
 }

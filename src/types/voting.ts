@@ -5,4 +5,5 @@ export interface VotingApp {
     musicShow: string;
     description: string;
     link: string;
+    hasCurrency: boolean
 }

@@ -39,6 +39,8 @@ export default function VotingCarousel({ apps }: VotingCarouselProps) {
                                             alt={app.name}
                                             fill
                                             className="rounded-lg object-contain"
+                                            unoptimized // Add this to bypass image optimization for external URLs
+                                            loader={({ src }) => src} // Add custom loader for external URLs
                                         />
                                     </div>
                                     <h2 className="text-2xl font-bold text-white mb-2">
