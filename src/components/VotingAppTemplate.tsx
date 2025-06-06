@@ -1,40 +1,22 @@
 'use client';
 
-import { VotingApp } from '@/types/voting';
+import { VotingApp, VotingAppTemplateProps} from '@/types/voting';
 import Image from 'next/image';
 import TwoWeekCalendar from './TwoWeekCalendar';
 import { CalendarEvent } from '@/types/CalendarEvent';
+import EventCountdown from './EventCountdown';
+import ExpandableTutorial from './ExpandableTutorial';
 
-interface VotingCurrencyInfo {
-    name: string;
-    description: string;
-    howToCollect: string[];
-}
-
-interface ShowSchedule {
-    day: string;
-    time: string;
-    channel: string;
-    timezone: string;
-}
-
-interface VotingAppTemplateProps {
-    app: VotingApp;
-    schedule: ShowSchedule[];
-    currency?: VotingCurrencyInfo;
-    votingMethods: string[];
-    events: CalendarEvent[];
-}
 
 export default function VotingAppTemplate({
     app,
     schedule,
-    currency,
+    currencies,
     votingMethods,
     events = []
 }: VotingAppTemplateProps) {
     return (
-        <div className="max-w-4xl mx-auto py-8 space-y-12">
+        <div className="max-w-4xl mx-auto py-8 space-y-6">
             {/* App Header */}
             <section className="text-center">
                 <div className="w-32 h-32 mx-auto relative mb-6">
@@ -43,26 +25,23 @@ export default function VotingAppTemplate({
                         alt={app.name}
                         fill
                         className="rounded-xl object-contain"
-                        unoptimized // Add this to bypass image optimization for external URLs
+                        unoptimized
                         loader={({ src }) => src}
                     />
                 </div>
                 <h1 className="text-4xl font-bold mb-4">{app.name}</h1>
-                <p className="text-xl text-gray-300 mb-4">{app.musicShow}</p>
-                <a
-                    href={app.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                    Open App
-                </a>
+                <p className="text-xl text-gray-300">{app.musicShow}</p>
             </section>
 
             {/* Voting schedule */}
             <section className="bg-gray-900 rounded-lg p-6">
-                <h2 className="text-2xl font-semibold mb-4">Voting Schedule</h2>
+                <EventCountdown events={events} />
                 <TwoWeekCalendar startDate={new Date()} events={events} />
+                {app.scheduleInfo && (
+                    <p className="text-sm text-gray-500 mt-4 italic whitespace-pre-line">
+                        {app.scheduleInfo}
+                    </p>
+                )}
             </section>
 
             {/* Show Schedule */}
@@ -83,28 +62,40 @@ export default function VotingAppTemplate({
                 </div>
             </section>
 
-            {/* Currency Section - Conditional Render */}
-            {currency && (
-                <section className="bg-gray-900 rounded-lg p-6">
-                    <h2 className="text-2xl font-semibold mb-4">About {currency.name}</h2>
-                    <p className="text-gray-300 mb-4">{currency.description}</p>
-                    <h3 className="text-xl font-semibold mb-2">How to Collect</h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-2">
-                        {currency.howToCollect.map((method, index) => (
-                            <li key={index}>{method}</li>
-                        ))}
-                    </ul>
-                </section>
+            {/* Currencies Section - Conditional Render */}
+            {currencies && currencies.length > 0 && (
+                <div className="space-y-6">
+                    {currencies.map((currency, currencyIndex) => (
+                        <section key={currencyIndex} className="bg-gray-900 rounded-lg p-6">
+                            <h2 className="text-2xl font-semibold mb-4">{currency.name}</h2>
+                            <p className="text-gray-300 mb-4">{currency.description}</p>
+                            <h3 className="text-xl font-semibold mb-2">How to Collect</h3>
+                            <div className="space-y-2">
+                                {currency.howToCollect.map((method, index) => (
+                                    <ExpandableTutorial
+                                        key={index}
+                                        name={method.name}
+                                        steps={method.steps}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    ))}
+                </div>
             )}
 
             {/* Voting Methods */}
             <section className="bg-gray-900 rounded-lg p-6">
                 <h2 className="text-2xl font-semibold mb-4">How to Vote</h2>
-                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                <div className="space-y-2">
                     {votingMethods.map((method, index) => (
-                        <li key={index}>{method}</li>
+                        <ExpandableTutorial
+                            key={index}
+                            name={method.name}
+                            steps={method.steps}
+                        />
                     ))}
-                </ul>
+                </div>
             </section>
         </div>
     );

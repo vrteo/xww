@@ -16,21 +16,21 @@ interface EventInstance {
 
 const EVENT_COLORS: Record<EventType, { bg: string; text: string; inactiveBg: string; inactiveText: string }> = {
     tracking: {
-        bg: 'bg-purple-950/50',
+        bg: 'bg-purple-600 sm:bg-purple-950/50',
         text: 'text-purple-300',
-        inactiveBg: 'bg-purple-950/20',
+        inactiveBg: 'bg-purple-800/70 sm:bg-purple-950/20',
         inactiveText: 'text-purple-300/50'
     },
     prevote: {
-        bg: 'bg-amber-950/50',
+        bg: 'bg-amber-600 sm:bg-amber-950/50',
         text: 'text-amber-300',
-        inactiveBg: 'bg-amber-950/20',
+        inactiveBg: 'bg-amber-800/70 sm:bg-amber-950/20',
         inactiveText: 'text-amber-300/50'
     },
     live: {
-        bg: 'bg-red-950/50',
+        bg: 'bg-red-600 sm:bg-red-950/50',
         text: 'text-red-300',
-        inactiveBg: 'bg-red-950/20',
+        inactiveBg: 'bg-red-800/70 sm:bg-red-950/20',
         inactiveText: 'text-red-300/50'
     }
 };
@@ -150,19 +150,39 @@ export default function TwoWeekCalendar({ startDate = new Date(), events = [] }:
                                     <span
                                         key={eventIndex}
                                         className={`
-                                            text-xs px-1 py-0.5 rounded
+                                            rounded h-1.5 sm:h-auto
                                             ${event.isActive 
                                                 ? EVENT_COLORS[event.type].bg 
                                                 : EVENT_COLORS[event.type].inactiveBg}
                                             ${event.isActive 
                                                 ? EVENT_COLORS[event.type].text 
                                                 : EVENT_COLORS[event.type].inactiveText}
+                                            sm:px-1 sm:py-0.5 sm:text-xs
                                         `}
                                     >
-                                        {EVENT_DISPLAY_NAMES[event.type]}
+                                        <span className="hidden sm:inline">
+                                            {EVENT_DISPLAY_NAMES[event.type]}
+                                        </span>
                                     </span>
                                 ))}
                             </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Mobile Legend */}
+                <div className="sm:hidden mt-4 flex flex-row justify-around gap-2 border-t border-gray-700 pt-4">
+                    {Object.entries(EVENT_DISPLAY_NAMES).map(([type, name]) => (
+                        <div key={type} className="flex items-center gap-2">
+                            <div 
+                                className={`
+                                    w-4 h-1.5 rounded
+                                    ${EVENT_COLORS[type as EventType].bg}
+                                `}
+                            />
+                            <span className="text-xs text-gray-300">
+                                {name}
+                            </span>
                         </div>
                     ))}
                 </div>
